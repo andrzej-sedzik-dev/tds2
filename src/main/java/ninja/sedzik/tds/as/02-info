@@ -33,9 +33,27 @@ Dodaje to do pliku głównego aplikcji:
   }
 
 
+1c)
+
+BEFORE:
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.cors().and().csrf().disable().
+                authorizeRequests()
+                .antMatchers("/api/auth/**").permitAll()
+                .anyRequest().permitAll() // BY AS - becouse block Angular
+
+                .and()
+                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+    }
 
 
 
+
+AFTER:
 
 
 
