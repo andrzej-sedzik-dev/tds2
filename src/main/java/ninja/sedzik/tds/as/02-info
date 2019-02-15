@@ -1,0 +1,95 @@
+ERROR FRONTEND TO BACKEND CONNECTION URL
+a) - DB SQL PROBLEM:
+b) - message: "Http failure response for (unknown url): 0 Unknown Error"
+
+1)
+https://stackoverflow.com/questions/47180634/i-get-http-failure-response-for-unknown-url-0-unknown-error-instead-of-actu
+add_header 'Access-Control-Allow-Origin' 'http://localhost:4200' always;
+
+
+1a)
+Ja myśle że to trzeba dodać do BACKENDU, bo nie ma a jest tylko maxage  > 3600 ale o co tu chodzi (chyba godzina).
+
+
+1b)
+Dodaje to do pliku głównego aplikcji:
+
+
+  @Bean
+  public CorsFilter corsFilter(){
+
+    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    final CorsConfiguration config = new CorsConfiguration();
+    config.setAllowCredentials(true);
+    config.addAllowedHeader("*");
+    config.addAllowedOrigin("*");
+    config.addAllowedMethod("OPTIONS");
+    config.addAllowedMethod("POST");
+    config.addAllowedMethod("GET");
+    config.addAllowedMethod("PUT");
+    config.addAllowedMethod("DELETE");
+    source.registerCorsConfiguration("/**", config);
+    return new CorsFilter(source);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2) STOS:
+__zone_symbol__xhrURL: "http://localhost:8080/api/auth/signin"
+__proto__: XMLHttpRequest
+target: XMLHttpRequest
+onabort: (...)
+onerror: (...)
+onload: (...)
+onloadend: (...)
+onloadstart: (...)
+onprogress: (...)
+onreadystatechange: (...)
+ontimeout: (...)
+readyState: 4
+response: ""
+responseText: ""
+responseType: "text"
+responseURL: ""
+responseXML: (...)
+status: 0
+statusText: ""
+timeout: 0
+upload: XMLHttpRequestUpload {}
+withCredentials: false
+__zone_symbol__errorfalse: null
+__zone_symbol__loadfalse: null
+__zone_symbol__xhrListener: ƒ ()
+__zone_symbol__xhrSync: false
+__zone_symbol__xhrTask: t {_zone: t, runCount: 0, _zoneDelegates: null, _state: "notScheduled", type: "macroTask", …}
+__zone_symbol__xhrURL: "http://localhost:8080/api/auth/signin"
+__proto__: XMLHttpRequest
+timeStamp: 1014175.2349999952
+total: 0
+type: "error"
+__proto__: ProgressEvent
+headers: t
+headers: Map(0) {}
+lazyUpdate: null
+normalizedNames: Map(0) {}
+__proto__: Object
+message: "Http failure response for (unknown url): 0 Unknown Error"
+name: "HttpErrorResponse"
+ok: false
+status: 0
+statusText: "Unknown Error"
