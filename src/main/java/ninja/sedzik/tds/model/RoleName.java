@@ -1,0 +1,7 @@
+package ninja.sedzik.tds.model;
+
+public enum  RoleName {
+    ROLE_USER,
+    ROLE_PM,
+    ROLE_ADMIN
+}

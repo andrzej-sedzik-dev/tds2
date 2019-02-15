@@ -1,0 +1,65 @@
+DEPLOY ANGULAR APP INTO SPRING-BOOT.
+https://www.youtube.com/watch?v=Aduicn2FT58
+
+1)
+C:\Users\paral\Desktop\clouds\Heroku\spring\pro1\client>
+npm install copyfiles
+npm install bootstrap@3.3.7
+
+2) package.json
+
+
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod",
+    "postbuild": "npm run deploy",
+    "predeploy": "rimraf ../tds/src/main/resources/static && mkdirp ../tds/src/main/resources/static",
+    "deploy": "copyfiles -f dist/** ../tds/src/main/resources/static",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+
+
+3)
+appfolder/client
+appfolder/tds (server)
+
+
+4)
+C:\Users\paral\Desktop\clouds\Heroku\spring\pro1\client>npm run build
+
+4a)
+> client@0.0.0 build C:\Users\paral\Desktop\clouds\Heroku\spring\pro1\client
+> ng build --prod
+
+Date: 2019-02-08T00:06:08.922Z
+Hash: 120abfa5ee22432fac92
+Time: 5241ms
+chunk {0} polyfills.48c948228ce029354606.bundle.js (polyfills) 63.5 kB [initial] [rendered]
+chunk {1} main.279532993fc8a8213466.bundle.js (main) 154 kB [initial] [rendered]
+chunk {2} styles.ac89bfdd6de82636b768.bundle.css (styles) 0 bytes [initial] [rendered]
+chunk {3} inline.318b50c57b4eba3d437b.bundle.js (inline) 796 bytes [entry] [rendered]
+
+> client@0.0.0 postbuild C:\Users\paral\Desktop\clouds\Heroku\spring\pro1\client
+> npm run deploy
+
+
+> client@0.0.0 predeploy C:\Users\paral\Desktop\clouds\Heroku\spring\pro1\client
+> rimraf ../tds/src/main/resources/static && mkdirp ../tds/src/main/resources/static
+
+
+> client@0.0.0 deploy C:\Users\paral\Desktop\clouds\Heroku\spring\pro1\client
+> copyfiles -f dist/** ../tds/src/main/resources/static
+
+
+C:\Users\paral\Desktop\clouds\Heroku\spring\pro1\client>
+
+5)
+Run poject
+http://localhost:8080/
+Cool we see angular in port 8080.
+
+
+

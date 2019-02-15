@@ -1,0 +1,115 @@
+I Budujemy aplikacjê, tworzymy plik jar.
+
+
+1) build app.
+mvn package
+[INFO] BUILD SUCCESS
+
+
+
+1a)
+Jeœli sa b³êdy to try dodaæ to
+<maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+- wa¿ne, ma byæ wersja 2.18.1 bo wersja 2.20.1 robi problemy
+
+
+   <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+
+        <!-- Plugin versions-->
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
+    </properties>
+
+
+1b)
+Gdy mamy jave w wersji powy¿ej 8, to musimy dodaæ jeszcze zale¿noœci bind do pliku pom.xml
+
+
+
+2) add Procfile
+web: java $JAVA_OPTS -jar target/tds-0.0.1-SNAPSHOT.jar -Dserver.port=$PORT $JAR_OPTS
+
+
+
+2a) Z k¹d ta nazwa target/tds-0.0.1-SNAPSHOT.jar:
+- z naszego artefaktu
+
+
+  <groupId>ninja.sedzik</groupId>
+  <artifactId>tds</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>tds</name>
+
+
+
+
+3)
+fix the properties to ron in Herocu
+server.port=${PORT:8080}
+
+4)
+Heroku (we have got a cleardb configuret).
+Now we can deploy/connect to github/
+[button] deploy branch
+
+
+
+4a)
+Jeœli nie mamy jeszcze zdelnego repo musimy je podpi¹æ
+
+
+
+
+
+
+
+
+
+
+
+5)
+https://springtds.herokuapp.com/
+cool - the app is ready.
+
+Whitelabel Error Page
+This application has no explicit mapping for /error, so you are seeing this as a fallback.
+
+BROWSER
+Wed Feb 06 20:58:19 UTC 2019
+There was an unexpected error (type=Not Found, status=404).
+No message available
+
+b)
+
+https://springtds.herokuapp.com/rest/all
+
+    [
+        {
+        id: null,
+        username: "first-user"
+        },
+        {
+        id: null,
+        username: "second-user"
+        },
+        {
+        id: null,
+        username: "nextone-user"
+        },
+        {
+        id: null,
+        username: "again-user"
+        },
+        {
+        id: null,
+        username: "other-user"
+        },
+        {
+        id: null,
+        username: "old-user"
+        }
+    ]
